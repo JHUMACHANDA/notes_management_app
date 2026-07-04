@@ -1,17 +1,49 @@
-# notes_management_app
+# Notes Management App
 
-A new Flutter project.
+A simple Notes app built with **Flutter** and **Cloud Firestore**, supporting Create, View, Update, and Delete (CRUD) of notes. Each note has a **Title** and a **Description**.
 
-## Getting Started
+## Screens
+1. **Notes List Screen** — shows all notes from Firestore.
+2. **Add/Edit Note Screen** — used to add a new note or edit an existing one.
 
-This project is a starting point for a Flutter application.
+## Project Structure
+```
+lib/
+├── main.dart
+├── models/note.dart
+├── services/firestore_service.dart
+└── screens/
+    ├── notes_list_screen.dart
+    └── add_edit_note_screen.dart
+pubspec.yaml
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Setup & Run
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+1. **Create project shell:**
+   ```
+   flutter create notes_management_app
+   ```
+   Then copy in the files above (replace `pubspec.yaml` and `lib/main.dart`, add the rest).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. **Connect Firebase:**
+    - Create a project at [Firebase Console](https://console.firebase.google.com/)
+    - Add app → Android (package name must match `applicationId` in `android/app/build.gradle`)
+    - Download `google-services.json` → place in `android/app/`
+    - `android/build.gradle` → add `classpath 'com.google.gms:google-services:4.4.2'`
+    - `android/app/build.gradle` → add `apply plugin: 'com.google.gms.google-services'` at the top
+
+3. **Enable Firestore:**
+    - In Firebase Console → **Build → Firestore Database → Create database
+    - Choose a location, select **Start in test mode**
+
+4. **Install & Run:**
+   ```
+   flutter pub get
+   flutter run
+   ```
+
+### Troubleshooting
+- `PERMISSION_DENIED` → Firestore API not enabled yet, wait a minute and retry.
+- `NOT_FOUND: database does not exist` → database wasn't created, do step 3.
+- Nothing happens on Add/Update/Delete → fully stop and re-run the app after fixing Firebase settings.
