@@ -5,7 +5,7 @@ class FirestoreService {
   final CollectionReference _notesCollection =
   FirebaseFirestore.instance.collection('notes');
 
-  // READ - stream all notes
+
   Stream<List<Note>> getNotes() {
     return _notesCollection.snapshots().map((snapshot) {
       return snapshot.docs
